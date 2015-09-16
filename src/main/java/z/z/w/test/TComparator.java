@@ -22,7 +22,12 @@ public class TComparator implements Comparator< String >
 	@Override
 	public int compare( String o1, String o2 )
 	{
+		
+//		List<Step> steps=new ArrayList<Step>;
+//	    //对集合对象进行排序
+//	    StepComparator comparator=new StepComparator();
+//	    Collections.sort(steps, comparator);
+		
 		return o1.compareTo( o2 ) ;
 	}
-	
 }
