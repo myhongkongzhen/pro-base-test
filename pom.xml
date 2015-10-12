@@ -1,36 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>z.z.w</groupId>
-		<artifactId>pro-module</artifactId>
-		<version>2015083110-SNAPSHOT</version>
-		<relativePath>../pro-module/pom.xml</relativePath>
-	</parent>
+    <parent>
+        <groupId>z.z.w</groupId>
+        <artifactId>pro-module</artifactId>
+        <version>2015083110-SNAPSHOT</version>
+        <relativePath>../pro-module/pom.xml</relativePath>
+    </parent>
 
-	<artifactId>pro-base-test</artifactId>
-	<version>2015090210-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <artifactId>pro-base-test</artifactId>
+    <version>2015090210-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>pro-base-test</name>
-	<url>http://maven.apache.org</url>
+    <name>pro-base-test</name>
+    <url>http://maven.apache.org</url>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+    </properties>
 
-	<dependencies>
-		<!-- 工具包 -->
-		<dependency>
-			<groupId>z.z.w</groupId>
-			<artifactId>pro-common</artifactId>
-		</dependency>
+    <dependencies>
+        <!-- 工具包 -->
+        <dependency>
+            <groupId>z.z.w</groupId>
+            <artifactId>pro-common</artifactId>
+        </dependency>
 
-		<!-- JUNIT4 -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-	</dependencies>
+        <!-- JUNIT4 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

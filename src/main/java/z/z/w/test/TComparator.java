@@ -1,14 +1,14 @@
-package z.z.w.test ;
+package z.z.w.test;
 
-import java.util.Comparator ;
+import java.util.Comparator;
 
 /**************************************************************************
  * <pre>
- *     FileName: z.z.w.util.TComparator.java
- *         Desc: Comparator接口，算法與數據分離
- *      @author: Z_Z.W - myhongkongzhen@gmail.com
- *     @version: 2015年9月16日 下午2:28:43 
- *   LastChange: 2015年9月16日 下午2:28:43 
+ *     FileName: z.z.w.test.aio.AioClient.java
+ *         Desc:
+ *       author: Z_Z.W - myhongkongzhen@gmail.com
+ *      version: 2015年9月21日 上午11:57:10
+ *   LastChange: 2015年9月21日 上午11:57:10
  *      History:
  * </pre>
  **************************************************************************/
@@ -20,14 +20,13 @@ public class TComparator implements Comparator< String >
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public int compare( String o1, String o2 )
+	public int compare( String s1 , String s2 )
 	{
-		
 //		List<Step> steps=new ArrayList<Step>;
 //	    //对集合对象进行排序
 //	    StepComparator comparator=new StepComparator();
 //	    Collections.sort(steps, comparator);
 		
-		return o1.compareTo( o2 ) ;
+		return s1.compareTo( s2 );
 	}
 }
