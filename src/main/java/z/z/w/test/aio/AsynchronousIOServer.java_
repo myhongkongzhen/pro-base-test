@@ -1,0 +1,86 @@
+package z.z.w.test.aio ;
+
+import java.io.IOException ;
+import java.net.InetSocketAddress ;
+import java.net.StandardSocketOptions ;
+import java.nio.channels.AsynchronousChannelGroup ;
+import java.nio.channels.AsynchronousServerSocketChannel ;
+import java.util.concurrent.Executors ;
+
+import org.slf4j.Logger ;
+import org.slf4j.LoggerFactory ;
+
+/**************************************************************************
+ * <pre>
+ *     FileName: z.z.w.test.aio.AsynchronousIOServer.java
+ *         Desc: 
+ *      @author: Z_Z.W - myhongkongzhen@gmail.com
+ *     @version: 2015年9月21日 下午4:35:19 
+ *   LastChange: 2015年9月21日 下午4:35:19 
+ *      History:
+ * </pre>
+ **************************************************************************/
+public class AsynchronousIOServer
+{
+	private final static Logger				logger						= LoggerFactory.getLogger( AsynchronousIOServer.class ) ;
+	public final static String				IP_ADDRESS					= "localhost" ;
+	public final static int					PORT						= 8888 ;
+	private final int						threadPoolSize				= 20 ;
+	private AsynchronousChannelGroup		asynchronousChannelGroup	= null ;													// aio的核心之一通道组.由它负责处理事件,完成之后通知相应的handler
+	private AsynchronousServerSocketChannel	serverSocketChannel			= null ;													// 端口侦听器
+//	private Future< AsynchronousSocketChannel >	acceptFuture				= null ;
+																																	
+	/**
+	 * 
+	 */
+	public AsynchronousIOServer()
+	{
+		try
+		{
+			/**
+			 * 第一步，创建一个AsynchronousServerSocketChannel，创建之前先创建一个
+			 * AsynchronousChannelGroup，上文提到AsynchronousServerSocketChannel可以绑定一个
+			 * AsynchronousChannelGroup，那么通过这个AsynchronousServerSocketChannel建立的连接都将同属于一个AsynchronousChannelGroup并共享资源
+			 */
+			this.asynchronousChannelGroup = AsynchronousChannelGroup.withCachedThreadPool( Executors.newCachedThreadPool() , this.threadPoolSize ) ;
+			/**
+			 * 然后初始化一个AsynchronousServerSocketChannel，通过open方法：
+			 */
+			this.serverSocketChannel = AsynchronousServerSocketChannel.open( this.asynchronousChannelGroup ) ;
+			/**
+			 * 通过nio 2.0引入的SocketOption类设置一些TCP选项：
+			 */
+			this.serverSocketChannel.setOption( StandardSocketOptions.SO_REUSEADDR , true ) ;
+			this.serverSocketChannel.setOption( StandardSocketOptions.SO_RCVBUF , 16 * 1024 ) ;
+			/**
+			 * 绑定本地地址：
+			 * 其中的100用于指定等待连接的队列大小(backlog)
+			 */
+			this.serverSocketChannel.bind( new InetSocketAddress( IP_ADDRESS , PORT ) , 100 ) ;
+		}
+		catch ( IOException e )
+		{
+			logger.error( "Aioserver construction error : {}." , e.getMessage() , e ) ;
+		}
+	}
+	
+	/**
+	 * 最重要的监听工作还没开始，监听端口是为了等待连接上来以便accept产生一个AsynchronousSocketChannel来表示一个新建立的连接，
+	 * 因此需要发起一个accept调用，调用是异步的，操作系统将在连接建立后，将最后的结果——
+	 * AsynchronousSocketChannel返回
+	 * Create by : 2015年9月21日 下午4:54:12
+	 */
+	public void pendingAccept()
+	{
+		if ( this.serverSocketChannel.isOpen() )
+		{
+//			this.acceptFuture = 
+			this.serverSocketChannel.accept( null , new AcceptCompletionHandler() ) ;
+		}
+		else
+		{
+			throw new IllegalStateException( "Controller has been closed" ) ;
+		}
+	}
+	
+}

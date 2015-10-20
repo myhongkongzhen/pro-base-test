@@ -1,0 +1,44 @@
+package z.z.w.test.aio ;
+
+import java.nio.channels.CompletionHandler ;
+
+import org.slf4j.Logger ;
+import org.slf4j.LoggerFactory ;
+
+/**************************************************************************
+ * <pre>
+ *     FileName: z.z.w.test.aio.AcceptCompletionHandler.java
+ *         Desc: 
+ *      @author: Z_Z.W - myhongkongzhen@gmail.com
+ *     @version: 2015年9月21日 下午4:49:38 
+ *   LastChange: 2015年9月21日 下午4:49:38 
+ *      History:
+ * </pre>
+ **************************************************************************/
+public class AcceptCompletionHandler implements CompletionHandler< Integer, AbstractAioSession >
+{
+	private final static Logger	logger	= LoggerFactory.getLogger( AcceptCompletionHandler.class ) ;
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.nio.channels.CompletionHandler#completed(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public void completed( Integer result , AbstractAioSession attachment )
+	{
+		// TODO 2015年9月21日 下午5:10:33 
+		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.nio.channels.CompletionHandler#failed(java.lang.Throwable, java.lang.Object)
+	 */
+	@Override
+	public void failed( Throwable exc , AbstractAioSession attachment )
+	{
+		// TODO 2015年9月21日 下午5:10:33 
+		
+	}
+	
+}
